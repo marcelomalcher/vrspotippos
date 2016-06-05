@@ -1,0 +1,47 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootGradleVersion")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'maven-publish'
+apply plugin: 'jacoco'
+
+group 'br.com.marcelomalcher'
+jar {
+	baseName = 'vrspotippos'
+	version = "$spotipposVersion"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+task wrapper(type: org.gradle.api.tasks.wrapper.Wrapper) {
+	gradleVersion = '2.13'
+}
+
+
+dependencies {
+	compile ("org.springframework.boot:spring-boot-starter-web") {
+		exclude module: "spring-boot-starter-tomcat"
+	}
+	compile "org.springframework.boot:spring-boot-starter-jetty"
+
+	//compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
+	//compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+
+	compile "com.google.guava:guava:$guavaVersion"
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}

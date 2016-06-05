@@ -1,0 +1,12 @@
+{
+  "id": 665,
+  "title": "Imóvel código 665, com 1 quarto e 1 banheiro",
+  "price": 540000,
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "x": 667,
+  "y": 556,
+  "beds": 1,
+  "baths": 1,
+  "provinces" : ["Ruja"],
+  "squareMeters": 42
+}
