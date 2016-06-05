@@ -14,8 +14,6 @@ public class HashMapPropertyRepository implements PropertyRepository {
 
   @Override
   public Property create(Property property) {
-    //TODO definição de id
-    // - inicialmente considerando que a propriedade já chega com o identificador
     return map.put(property.getId(), property);
   }
 

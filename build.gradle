@@ -38,10 +38,11 @@ dependencies {
 	}
 	compile "org.springframework.boot:spring-boot-starter-jetty"
 
-	//compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
 	//compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 
 	compile "com.google.guava:guava:$guavaVersion"
+	compile "commons-io:commons-io:$commonsIoVersion"
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	//testCompile "org.mockito:mockito-core:$mockitoVersion"
 }

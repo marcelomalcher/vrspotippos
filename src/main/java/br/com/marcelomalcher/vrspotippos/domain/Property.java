@@ -1,6 +1,6 @@
 package br.com.marcelomalcher.vrspotippos.domain;
 
-import java.util.List;
+import java.util.Collection;
 
 public class Property {
 
@@ -12,7 +12,7 @@ public class Property {
   private Integer y;
   private Integer beds;
   private Integer baths;
-  private List<String> provices;
+  private Collection<String> provinces;
   private Integer squareMeters;
 
   public String getId() {
@@ -79,12 +79,12 @@ public class Property {
     this.baths = baths;
   }
 
-  public List<String> getProvices() {
-    return provices;
+  public Collection<String> getProvinces() {
+    return provinces;
   }
 
-  public void setProvices(List<String> provices) {
-    this.provices = provices;
+  public void setProvinces(Collection<String> provinces) {
+    this.provinces = provinces;
   }
 
   public Integer getSquareMeters() {
@@ -111,7 +111,7 @@ public class Property {
     if (y != null ? !y.equals(property.y) : property.y != null) return false;
     if (beds != null ? !beds.equals(property.beds) : property.beds != null) return false;
     if (baths != null ? !baths.equals(property.baths) : property.baths != null) return false;
-    if (provices != null ? !provices.equals(property.provices) : property.provices != null)
+    if (provinces != null ? !provinces.equals(property.provinces) : property.provinces != null)
       return false;
     return squareMeters != null ? squareMeters.equals(property.squareMeters) : property.squareMeters == null;
 
@@ -127,7 +127,7 @@ public class Property {
     result = 31 * result + (y != null ? y.hashCode() : 0);
     result = 31 * result + (beds != null ? beds.hashCode() : 0);
     result = 31 * result + (baths != null ? baths.hashCode() : 0);
-    result = 31 * result + (provices != null ? provices.hashCode() : 0);
+    result = 31 * result + (provinces != null ? provinces.hashCode() : 0);
     result = 31 * result + (squareMeters != null ? squareMeters.hashCode() : 0);
     return result;
   }
@@ -143,7 +143,7 @@ public class Property {
       ", y=" + y +
       ", beds=" + beds +
       ", baths=" + baths +
-      ", provices=" + provices +
+      ", provinces=" + provinces +
       ", squareMeters=" + squareMeters +
       '}';
   }

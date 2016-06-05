@@ -1,0 +1,85 @@
+{
+  "totalProperties": 10,
+  "properties": [
+    {
+      "id": 1,
+      "x": 88,
+      "y": 521,
+      "beds": 5,
+      "baths": 4,
+      "squareMeters": 198
+    },
+    {
+      "id": 2,
+      "x": 1004,
+      "y": 99,
+      "beds": 4,
+      "baths": 3,
+      "squareMeters": 84
+    },
+    {
+      "id": 3,
+      "x": 1181,
+      "y": 906,
+      "beds": 5,
+      "baths": 4,
+      "squareMeters": 151
+    },
+    {
+      "id": 4,
+      "x": 1132,
+      "y": 631,
+      "beds": 5,
+      "baths": 4,
+      "squareMeters": 197
+    },
+    {
+      "id": 5,
+      "x": 932,
+      "y": 104,
+      "beds": 5,
+      "baths": 4,
+      "squareMeters": 146
+    },
+    {
+      "id": 6,
+      "x": 1079,
+      "y": 608,
+      "beds": 5,
+      "baths": 4,
+      "squareMeters": 158
+    },
+    {
+      "id": 7,
+      "x": 1210,
+      "y": 962,
+      "beds": 5,
+      "baths": 4,
+      "squareMeters": 167
+    },
+    {
+      "id": 8,
+      "x": 30,
+      "y": 88,
+      "beds": 5,
+      "baths": 4,
+      "squareMeters": 156
+    },
+    {
+      "id": 9,
+      "x": 1358,
+      "y": 412,
+      "beds": 5,
+      "baths": 4,
+      "squareMeters": 204
+    },
+    {
+      "id": 10,
+      "x": 1004,
+      "y": 54,
+      "beds": 3,
+      "baths": 2,
+      "squareMeters": 70
+    }
+  ]
+}
