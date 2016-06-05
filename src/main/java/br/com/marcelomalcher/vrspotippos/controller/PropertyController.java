@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 import br.com.marcelomalcher.vrspotippos.domain.Property;
 import br.com.marcelomalcher.vrspotippos.domain.search.SearchPropertiesResult;
 import br.com.marcelomalcher.vrspotippos.service.PropertyService;
@@ -30,7 +32,7 @@ public class PropertyController {
     method = RequestMethod.POST,
     consumes = MediaType.APPLICATION_JSON_VALUE,
     produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Property> create(@RequestBody Property property) {
+  public ResponseEntity<Property> create(@RequestBody @Valid Property property) {
     Property createdProperty = service.create(property);
     if (createdProperty != null) {
       return new ResponseEntity<>(createdProperty, HttpStatus.CREATED);
@@ -43,7 +45,7 @@ public class PropertyController {
     method = RequestMethod.GET,
     value = "/{id:.+}",
     produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Property> read(@PathVariable String id) {
+  public ResponseEntity<Property> read(@PathVariable Integer id) {
     Property property = service.read(id);
     if (property != null) {
       return new ResponseEntity<>(property, HttpStatus.OK);
@@ -59,6 +61,6 @@ public class PropertyController {
                                             @RequestParam(value = "ay") Integer ay,
                                             @RequestParam(value = "bx") Integer bx,
                                             @RequestParam(value = "by") Integer by) {
-    return service.searchPropertiesByBoundingBox(ax, ay, bx, by);
+    return service.filterPropertiesByBox(ax, ay, bx, by);
   }
 }

@@ -1,14 +1,22 @@
 package br.com.marcelomalcher.vrspotippos.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
+
 public class Province {
 
+  @NotEmpty
   private String name;
+  @NotNull
   private Boundaries upperLeft;
+  @NotNull
   private Boundaries bottomRight;
 
   public static class Boundaries {
-    Integer x;
-    Integer y;
+
+    private Integer x;
+    private Integer y;
 
     public Integer getX() {
       return x;

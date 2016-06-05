@@ -1,25 +1,35 @@
 package br.com.marcelomalcher.vrspotippos.domain;
 
+import org.hibernate.validator.constraints.Range;
+
 import java.util.Collection;
 
 public class Property {
 
-  private String id;
+  private Integer id;
   private String title;
   private Long price;
   private String description;
+  @Range(min = 0, max = 1400, message = "X não é válido e deve obdecer o limite: 0 <= x <= 1400")
   private Integer x;
+  @Range(min = 0, max = 1000, message = "Y não é válido e deve obdecer o limite: 0 <= y <= 1000")
   private Integer y;
+  @Range(min = 1, max = 5, message = "Um imóvel em Spotippos deve ter no máximo 5 quartos (beds)," +
+    " e no mínimo 1")
   private Integer beds;
+  @Range(min = 1, max = 4, message = "Um imóvel em Spotippos deve ter no máximo 4 banheiros " +
+    "(baths) e no mínimo 1")
   private Integer baths;
   private Collection<String> provinces;
+  @Range(min = 20, max = 240, message = "Um imóvel em Spotippos deve ter no máximo 240 metros " +
+    "quadrados e no mínimo 20")
   private Integer squareMeters;
 
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

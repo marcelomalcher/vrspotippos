@@ -7,6 +7,6 @@ import br.com.marcelomalcher.vrspotippos.domain.Property;
 public interface PropertyRepository {
 
   Property create(Property property);
-  Property read(String id);
+  Property read(Integer id);
   Collection<Property> readAll();
 }

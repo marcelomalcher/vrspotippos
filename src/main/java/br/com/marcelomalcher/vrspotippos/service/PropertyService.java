@@ -7,16 +7,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.marcelomalcher.vrspotippos.domain.Property;
 import br.com.marcelomalcher.vrspotippos.domain.Province;
 import br.com.marcelomalcher.vrspotippos.domain.search.SearchPropertiesResult;
 import br.com.marcelomalcher.vrspotippos.repository.PropertyRepository;
 import br.com.marcelomalcher.vrspotippos.repository.ProvinceRepository;
-import br.com.marcelomalcher.vrspotippos.service.search.SearchPropertiesService;
-import br.com.marcelomalcher.vrspotippos.service.search.SearchProvincesService;
+import br.com.marcelomalcher.vrspotippos.service.filter.FilterPropertiesService;
+import br.com.marcelomalcher.vrspotippos.service.filter.FilterProvincesService;
 
+/**
+ * Serviço responsável por criar as proprieades e buscar imóveis contiduos em uma determinada área
+ */
 @Service
 public class PropertyService {
 
@@ -25,9 +28,9 @@ public class PropertyService {
   @Autowired
   ProvinceRepository provinceRepository;
   @Autowired
-  SearchPropertiesService searchPropertiesService;
+  FilterPropertiesService filterPropertiesService;
   @Autowired
-  SearchProvincesService searchProvincesService;
+  FilterProvincesService filterProvincesService;
 
   public Property create(Property property) {
     property.setProvinces(matchProvinces(property));
@@ -35,19 +38,15 @@ public class PropertyService {
   }
 
   private Collection<String> matchProvinces(Property property) {
-    List<String> provinceNames = Lists.newArrayList();
-
-    Collection<Province> provinces = searchProvincesService.
-      filterProvinces(provinceRepository.readAll(), property.getX(), property.getY());
-
+    Collection<Province> provinces = filterProvincesService.
+      filterProvinces(property.getX(), property.getY());
     if (!StringUtils.isEmpty(provinces)) {
-      provinces.stream().forEach(p -> provinceNames.add(p.getName()));
+      return provinces.stream().map(p -> p.getName()).collect(Collectors.toList());
     }
-
-    return provinceNames;
+    return Lists.newArrayList();
   }
 
-  public Property read(String id) {
+  public Property read(Integer id) {
     return repository.read(id);
   }
 
@@ -55,12 +54,10 @@ public class PropertyService {
     return repository.readAll();
   }
 
-  public SearchPropertiesResult searchPropertiesByBoundingBox(Integer ax, Integer ay,
-                                                              Integer bx, Integer by) {
+  public SearchPropertiesResult filterPropertiesByBox(Integer ax, Integer ay,
+                                                      Integer bx, Integer by) {
     Collection<Property> properties =
-      searchPropertiesService.filterProperties(
-        repository.readAll(),
-        ax, ay, bx, by);
+      filterPropertiesService.filterProperties(ax, ay, bx, by);
     return new SearchPropertiesResult.Builder()
       .withProperties(properties)
       .build();

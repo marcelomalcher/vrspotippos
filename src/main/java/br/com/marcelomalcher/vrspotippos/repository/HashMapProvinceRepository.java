@@ -14,7 +14,9 @@ public class HashMapProvinceRepository implements ProvinceRepository {
 
   @Override
   public Province create(Province province) {
-    return map.put(handleName(province.getName()), province);
+    String name = handleName(province.getName());
+    map.put(name, province);
+    return province;
   }
 
   @Override

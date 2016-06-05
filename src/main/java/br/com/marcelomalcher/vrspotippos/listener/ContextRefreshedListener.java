@@ -12,6 +12,9 @@ import java.io.IOException;
 import br.com.marcelomalcher.vrspotippos.service.loader.PropertiesLoaderService;
 import br.com.marcelomalcher.vrspotippos.service.loader.ProvincesLoaderService;
 
+/**
+ * Listener do contexto, tem como objetivo carregar as províncias e propriedades
+ */
 @Component
 public class ContextRefreshedListener implements ApplicationListener<ContextRefreshedEvent> {
 

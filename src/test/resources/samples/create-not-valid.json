@@ -1,0 +1,10 @@
+{
+  "x": 222,
+  "y": 444,
+  "title": "Imóvel inválido devido a número de quartos, banheiros e área",
+  "price": 1250000,
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "beds": 10,
+  "baths": 10,
+  "squareMeters": 2000
+}

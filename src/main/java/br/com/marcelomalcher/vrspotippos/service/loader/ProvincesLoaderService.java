@@ -21,28 +21,31 @@ public class ProvincesLoaderService {
 
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
-  @Autowired
-  RestTemplate restTemplate;
-
-  @Autowired
-  @Qualifier("provinces")
   String provincesURL;
+  RestTemplate restTemplate;
+  ProvincesReaderService provincesReader;
+  ProvinceRepository provinceRepository;
 
   @Autowired
-  ProvincesReaderService reader;
-
-  @Autowired
-  ProvinceRepository repository;
+  public ProvincesLoaderService(@Qualifier("provinces") String provincesURL,
+                                RestTemplate restTemplate,
+                                ProvincesReaderService provincesReader,
+                                ProvinceRepository provinceRepository) {
+    this.provincesURL = provincesURL;
+    this.restTemplate = restTemplate;
+    this.provincesReader = provincesReader;
+    this.provinceRepository = provinceRepository;
+  }
 
   public void loadProvinces() throws IOException {
     logger.debug("Loading provinces from: {}", provincesURL);
     ResponseEntity<String> provincesJson =
       restTemplate.getForEntity(provincesURL, String.class);
     logger.debug("Provinces json: {}", provincesJson.getBody());
-    Collection<Province> provinces  = reader.readProvinces(provincesJson.getBody());
+    Collection<Province> provinces = provincesReader.readProvinces(provincesJson.getBody());
     if (!StringUtils.isEmpty(provinces)) {
       provinces.stream()
-        .forEach(p -> repository.create(p));
+        .forEach(p -> provinceRepository.create(p));
     }
   }
 }

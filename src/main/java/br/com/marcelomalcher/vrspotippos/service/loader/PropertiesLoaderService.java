@@ -13,39 +13,39 @@ import java.io.IOException;
 import java.util.Collection;
 
 import br.com.marcelomalcher.vrspotippos.domain.Property;
-import br.com.marcelomalcher.vrspotippos.domain.Province;
-import br.com.marcelomalcher.vrspotippos.repository.ProvinceRepository;
 import br.com.marcelomalcher.vrspotippos.service.PropertyService;
 import br.com.marcelomalcher.vrspotippos.service.reader.PropertiesReaderService;
-import br.com.marcelomalcher.vrspotippos.service.reader.ProvincesReaderService;
 
 @Service
 public class PropertiesLoaderService {
 
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
-  @Autowired
-  RestTemplate restTemplate;
-
-  @Autowired
-  @Qualifier("properties")
   String propertiesURL;
+  RestTemplate restTemplate;
+  PropertiesReaderService propertiesReader;
+  PropertyService propertyService;
 
   @Autowired
-  PropertiesReaderService reader;
-
-  @Autowired
-  PropertyService service;
+  public PropertiesLoaderService(@Qualifier("properties") String propertiesURL,
+                                 RestTemplate restTemplate,
+                                 PropertiesReaderService propertiesReader,
+                                 PropertyService propertyService) {
+    this.propertiesURL = propertiesURL;
+    this.restTemplate = restTemplate;
+    this.propertiesReader = propertiesReader;
+    this.propertyService = propertyService;
+  }
 
   public void loadProperties() throws IOException {
     logger.debug("Loading properties from: {}", propertiesURL);
     ResponseEntity<String> propertiesJson =
       restTemplate.getForEntity(propertiesURL, String.class);
     //logger.debug("Properties json: {}", propertiesJson.getBody());
-    Collection<Property> properties= reader.readProperties(propertiesJson.getBody());
+    Collection<Property> properties= propertiesReader.readProperties(propertiesJson.getBody());
     if (!StringUtils.isEmpty(properties)) {
       properties.stream()
-        .forEach(p -> service.create(p));
+        .forEach(p -> propertyService.create(p));
     }
   }
 }
