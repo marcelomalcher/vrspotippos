@@ -40,4 +40,9 @@ public class HashMapPropertyRepository implements PropertyRepository {
   public Collection<Property> readAll() {
     return map.values();
   }
+
+  @Override
+  public void clear() {
+    map.clear();
+  }
 }

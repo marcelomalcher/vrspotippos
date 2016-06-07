@@ -9,4 +9,5 @@ public interface ProvinceRepository {
   Province create(Province province);
   Province read(String name);
   Collection<Province> readAll();
+  void clear();
 }

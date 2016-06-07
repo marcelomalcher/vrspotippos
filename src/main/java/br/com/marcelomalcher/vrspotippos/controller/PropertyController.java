@@ -20,7 +20,7 @@ import br.com.marcelomalcher.vrspotippos.domain.search.SearchPropertiesResult;
 import br.com.marcelomalcher.vrspotippos.service.PropertyService;
 
 @RestController
-@RequestMapping("/properties")
+@RequestMapping(value = "/properties", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class PropertyController {
 
   private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -28,10 +28,8 @@ public class PropertyController {
   @Autowired
   PropertyService service;
 
-  @RequestMapping(
-    method = RequestMethod.POST,
-    consumes = MediaType.APPLICATION_JSON_VALUE,
-    produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(method = RequestMethod.POST,
+    consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public ResponseEntity<Property> create(@RequestBody @Valid Property property) {
     Property createdProperty = service.create(property);
     if (createdProperty != null) {
@@ -41,10 +39,7 @@ public class PropertyController {
     }
   }
 
-  @RequestMapping(
-    method = RequestMethod.GET,
-    value = "/{id:.+}",
-    produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(method = RequestMethod.GET, value = "/{id:.+}")
   public ResponseEntity<Property> read(@PathVariable Integer id) {
     Property property = service.read(id);
     if (property != null) {
@@ -54,9 +49,7 @@ public class PropertyController {
     }
   }
 
-  @RequestMapping(
-    method = RequestMethod.GET,
-    produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(method = RequestMethod.GET)
   public SearchPropertiesResult searchByBox(@RequestParam(value = "ax") Integer ax,
                                             @RequestParam(value = "ay") Integer ay,
                                             @RequestParam(value = "bx") Integer bx,

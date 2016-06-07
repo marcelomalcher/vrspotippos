@@ -12,9 +12,6 @@ import java.util.stream.Collectors;
 import br.com.marcelomalcher.vrspotippos.domain.Province;
 import br.com.marcelomalcher.vrspotippos.repository.ProvinceRepository;
 
-/**
- * Serviço responsável por filtrar as províncias que fazem intercessão com as coordenadas x e y
- */
 @Service
 public class FilterProvincesService {
 

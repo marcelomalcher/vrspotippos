@@ -29,6 +29,11 @@ public class HashMapProvinceRepository implements ProvinceRepository {
     return map.values();
   }
 
+  @Override
+  public void clear() {
+    map.clear();
+  }
+
   private String handleName(String name) {
     return name.toLowerCase();
   }

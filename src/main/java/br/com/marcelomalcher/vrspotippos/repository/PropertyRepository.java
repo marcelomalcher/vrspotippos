@@ -9,4 +9,5 @@ public interface PropertyRepository {
   Property create(Property property);
   Property read(Integer id);
   Collection<Property> readAll();
+  void clear();
 }

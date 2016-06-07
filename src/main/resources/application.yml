@@ -1,7 +1,7 @@
 logging:
   level:
 #    org.springframework.web: DEBUG
-    br.com.marcelomalcher: DEBUG
+#    br.com.marcelomalcher: DEBUG
 
 data:
   provincesUrl: https://raw.githubusercontent.com/VivaReal/code-challenge/master/provinces.json

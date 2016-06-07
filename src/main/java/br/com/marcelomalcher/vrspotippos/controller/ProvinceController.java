@@ -17,7 +17,7 @@ import br.com.marcelomalcher.vrspotippos.domain.Province;
 import br.com.marcelomalcher.vrspotippos.repository.ProvinceRepository;
 
 @RestController
-@RequestMapping("/provinces")
+@RequestMapping(value = "/provinces", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ProvinceController {
 
   private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -26,10 +26,7 @@ public class ProvinceController {
   ProvinceRepository repository;
 
 
-  @RequestMapping(
-    method = RequestMethod.GET,
-    value = "/{name:.+}",
-    produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(method = RequestMethod.GET, value = "/{name:.+}")
   public ResponseEntity<Province> read(@PathVariable String name) {
     Province province = repository.read(name);
     if (province != null) {
@@ -39,9 +36,7 @@ public class ProvinceController {
     }
   }
 
-  @RequestMapping(
-    method = RequestMethod.GET,
-    produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(method = RequestMethod.GET)
   public Collection<Province> readAll() {
     return repository.readAll();
   }

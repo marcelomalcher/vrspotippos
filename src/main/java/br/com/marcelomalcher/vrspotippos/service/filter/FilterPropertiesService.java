@@ -12,10 +12,6 @@ import java.util.stream.Collectors;
 import br.com.marcelomalcher.vrspotippos.domain.Property;
 import br.com.marcelomalcher.vrspotippos.repository.PropertyRepository;
 
-/**
- * Serviço responsável por filtrar as propriedades a partir de
- * coordendadas upperLeft e bottomRight
- */
 @Service
 public class FilterPropertiesService {
 

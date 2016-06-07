@@ -13,7 +13,7 @@ import br.com.marcelomalcher.vrspotippos.service.loader.PropertiesLoaderService;
 import br.com.marcelomalcher.vrspotippos.service.loader.ProvincesLoaderService;
 
 /**
- * Listener do contexto, tem como objetivo carregar as províncias e propriedades
+ * Context listener
  */
 @Component
 public class ContextRefreshedListener implements ApplicationListener<ContextRefreshedEvent> {
