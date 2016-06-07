@@ -70,7 +70,7 @@ VRSpotippos up and running.
 
 ### Creates a property
 
-* Request:
+#### Request:
 
 ```http
 POST /properties
@@ -78,7 +78,7 @@ POST /properties
 curl -vX POST -d @property.json http://localhost:8080/properties -H "Content-Type: application/json"
 ```
 
-* Responses:
+#### Responses:
 
 - When the property is created successfully, it returns in the body the property as json, with 
 all the new fields defined and inferred like id and provinces.
@@ -236,7 +236,7 @@ curl -vX POST -d @create-not-valid.json http://localhost:8080/properties -H "Con
 
 ### Returns a property
 
-* Request:
+#### Request:
 
 ```http
 GET /properties
@@ -244,7 +244,7 @@ GET /properties
 curl -v http://localhost:8080/properties/{id}"
 ```
 
-* Response:
+#### Responses:
 
 - When the property is found
 
@@ -300,7 +300,7 @@ curl -v http://localhost:8080/properties/4001
 
 ### Searches  properties in defined region
 
-* Request:
+#### Request:
 
 ```http
 GET /properties?ax={integer}&ay={integer}&bx={integer}&by={integer}
@@ -309,7 +309,7 @@ curl -v http://localhost:8080/properties?ax=0&ay=100&bx=100&by=100 -H "Content-T
 application/json"
 ```
 
-* Response:
+#### Response:
 
 ```
 HTTP 200 - OK
@@ -404,6 +404,6 @@ vrspotippos.herokuapp.com
 
 Therefore, all operations described above can be done using `http://vrspotippos.herokuapp.com`.
 
-Notice that the service might be unavailable due to Heroku policy of sleeping services that 
+_Notice that the service might be unavailable due to Heroku policy of sleeping services that 
 use free dynos. To wake up the service, just send a GET request for its health endpoint and wait 
-a short time to perform the other operations.
+a short time to perform the other operations._
