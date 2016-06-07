@@ -395,3 +395,15 @@ curl -v 'http://localhost:8080/properties?ax=395&ay=800&bx=415&by=705'
 ```
 
 ## Heroku
+
+This project is deployed at Heroku using free dynos with the following domain:
+
+```
+vrspotippos.herokuapp.com
+```
+
+Therefore, all operations described above can be done using `http://vrspotippos.herokuapp.com`.
+
+Notice that the service might be unavailable due to Heroku policy of sleeping services that 
+use free dynos. To wake up the service, just send a GET request for its health endpoint and wait 
+a short time to perform the other operations.
