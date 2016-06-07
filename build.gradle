@@ -19,6 +19,15 @@ jar {
 	version = "$spotipposVersion"
 }
 
+configurations {
+	compile.exclude group: "log4j"
+	compile.exclude group: "org.slf4j", module: "slf4j-simple"
+	compile.exclude group: "org.slf4j", module: "jul-to-slf4j"
+	compile.exclude group: "org.slf4j", module: "log4j-over-slf4j"
+	compile.exclude group: "org.apache.logging.log4j"
+	providedRuntime
+}
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 

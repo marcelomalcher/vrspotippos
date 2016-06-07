@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.hamcrest.Matchers;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -44,6 +46,16 @@ public class ProvinceControllerTest {
   @Autowired
   ProvinceRepository repository;
 
+  @Autowired
+  Environment environment;
+
+  String port = "8080";
+
+  @Before
+  public void init() {
+    this.port = environment.getProperty("local.server.port");
+  }
+
   @Test
   public void testReadProvince() throws Exception {
     //given
@@ -64,7 +76,7 @@ public class ProvinceControllerTest {
 
     ResponseEntity<String> responseEntity =
       testRestTemplate.getForEntity(
-        "http://localhost:8080/provinces/" + name,
+        "http://localhost:" + port + "/provinces/" + name,
         String.class);
 
     assertThat(responseEntity.getStatusCode(), is(HttpStatus.OK));

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,7 +25,6 @@ import br.com.marcelomalcher.vrspotippos.domain.search.SearchPropertiesResult;
 import br.com.marcelomalcher.vrspotippos.repository.PropertyRepository;
 
 import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -45,9 +45,15 @@ public class PropertyControllerTest {
   @Autowired
   PropertyRepository repository;
 
+  @Autowired
+  Environment environment;
+
+  String port = "8080";
+
   @Before
   public void init() {
-    repository.clear();
+    this.repository.clear();
+    this.port = environment.getProperty("local.server.port");
   }
 
   @Test
@@ -68,7 +74,7 @@ public class PropertyControllerTest {
     //when
     ResponseEntity<String> responseEntity =
       testRestTemplate.postForEntity(
-        "http://localhost:8080/properties",
+        "http://localhost:" + port + "/properties",
         jsonNode,
         String.class);
 
@@ -110,7 +116,7 @@ public class PropertyControllerTest {
     //when
     ResponseEntity<String> responseEntity =
       testRestTemplate.postForEntity(
-        "http://localhost:8080/properties",
+        "http://localhost:" + port + "/properties",
         jsonNode,
         String.class);
 
@@ -127,7 +133,7 @@ public class PropertyControllerTest {
     property.setId(id);
     property.setX(10);
     property.setY(20);
-    property.setTitle("Imóvel " + UUID.randomUUID().toString());
+    property.setTitle("Imovel " + UUID.randomUUID().toString());
     property.setPrice(1000l);
     property.setBeds(2);
     property.setBaths(2);
@@ -138,7 +144,7 @@ public class PropertyControllerTest {
     //when
     ResponseEntity<String> responseEntity =
       testRestTemplate.getForEntity(
-        "http://localhost:8080/properties/" + id.toString(),
+        "http://localhost:" + port + "/properties/" + id.toString(),
         String.class);
 
     //then
@@ -220,7 +226,7 @@ public class PropertyControllerTest {
     //..box defined as UL(0,100) and BR(100,0)
     ResponseEntity<String> responseEntity =
       testRestTemplate.getForEntity(
-        "http://localhost:8080/properties?ax=0&ay=100&bx=100&by=0",
+        "http://localhost:" + port + "/properties?ax=0&ay=100&bx=100&by=0",
         String.class);
 
     //then
